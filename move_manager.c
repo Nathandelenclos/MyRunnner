@@ -19,7 +19,7 @@ void move_manager(data *d)
     while (tmp != NULL) {
         obj = (game_obj *) tmp->data;
         if (obj->action != NULL)
-            obj->action(obj);
+            obj->action(obj, d);
         tmp = tmp->next;
     }
 }

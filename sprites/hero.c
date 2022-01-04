@@ -5,41 +5,35 @@
 ** create hero
 */
 
-#include "../include/my.h"
 #include "../include/list.h"
 #include "../include/runner.h"
 #include <stdio.h>
-#include <SFML/Window.h>
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
-#include <stdlib.h>
 
 void animate(game_obj *obj)
 {
     obj->time = sfClock_getElapsedTime(obj->clock);
     obj->seconds = obj->time.microseconds / 1000000.0;
-    if (obj->seconds > 0.11) {
+    float time = 0.11;
+    if (obj->rect.top == 35 + 80 + 80)
+        time = 0.15;
+    if (obj->seconds > time) {
         obj->rect.left += 100;
         if (obj->rect.left >= 800 && obj->rect.top == 35 + 80 + 80)
             obj->rect.top = 35 + 80;
         if (obj->rect.left >= 800)
             obj->rect.left = 30;
-
         sfClock_restart(obj->clock);
         sfSprite_setTextureRect(obj->sprite, obj->rect);
     }
 }
 
-void action(game_obj *obj)
+void action(game_obj *obj, data *d)
 {
-    sfVector2f jump_up = { 0, 2};
-    sfVector2f jump_down = { 0, -3};
-    if (obj->rect.top == 35 + 80 + 80) {
-        if (obj->rect.left >= 630)
-            sfSprite_move(obj->sprite, jump_up);
-        else
-            sfSprite_move(obj->sprite, jump_down);
-    }
+    sfVector2f down = {0, 6};
+    if (sfSprite_getPosition(obj->sprite).y <= d->mode.height - 210)
+        sfSprite_move(obj->sprite, down);
 }
 
 void create_hero(data *d)
@@ -57,4 +51,5 @@ void create_hero(data *d)
     sfSprite_setTextureRect(hero->sprite, hero->rect);
     sfRenderWindow_drawSprite(d->window, hero->sprite, NULL);
     put_in_list(&d->objs, hero);
+
 }

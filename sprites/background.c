@@ -14,7 +14,7 @@
 #include <SFML/Graphics.h>
 #include <stdlib.h>
 
-void background_action(game_obj *obj)
+void background_action(game_obj *obj, data *d)
 {
     sfSprite_move(obj->sprite, obj->vector);
     sfVector2f v = sfSprite_getScale(obj->sprite);

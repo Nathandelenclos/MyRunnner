@@ -25,13 +25,22 @@ enum state {
     RESUME = 3
 };
 
+typedef struct data_s {
+    node *objs;
+    node *texts;
+    sfRenderWindow *window;
+    int state;
+    sfVideoMode mode;
+    sfFont *font;
+} data;
+
 typedef struct game_obj_s {
     enum GRP grp;
     sfSprite *sprite;
     sfTexture *texture;
     sfIntRect rect;
     sfVector2f position;
-    void (*action)(struct game_obj_s *);
+    void (*action)(struct game_obj_s *, data *d);
     void (*animate)(struct game_obj_s *);
     sfClock *clock;
     sfVector2f vector;
@@ -46,15 +55,6 @@ typedef struct text_s {
     sfVector2f position;
     sfColor color;
 } text;
-
-typedef struct data_s {
-    node *objs;
-    node *texts;
-    sfRenderWindow *window;
-    int state;
-    sfVideoMode mode;
-    sfFont *font;
-} data;
 
 void event_manager(data *d, sfEvent event);
 void sprites_manager(data *d);
