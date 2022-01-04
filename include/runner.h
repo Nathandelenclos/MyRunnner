@@ -65,6 +65,10 @@ game_obj *create_obj(
 );
 void set_scale(data *d, sfSprite *sprite, float multiplier);
 void time_manager(data *d);
+void create_safe_platform(data *d, int width, int height);
+void create_enemy_platform(data *d, int width, int height);
+void create_enemy_peak(data *d, int width, int height);
+void map_manager(char *map_name, data *d);
 sfIntRect create_rect(int width, int height, int left, int top);
 void move_manager(data *d);
 void play_screen(struct data_s *data, sfEvent event);

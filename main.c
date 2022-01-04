@@ -11,7 +11,7 @@
 #include <SFML/Graphics.h>
 #include <stdlib.h>
 
-data *init_data(void)
+data *init_data(char *filename)
 {
     sfVideoMode mode = {1080 * 1.3, 720 * 1.3, 32};
     data *d = malloc(sizeof(data));
@@ -21,6 +21,7 @@ data *init_data(void)
     d->state = START;
     d->window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle, NULL);
     d->font = sfFont_createFromFile("resources/font.ttf");
+    map_manager(filename, d);
     create_hero(d);
     create_background(d);
     return d;
@@ -43,7 +44,7 @@ int main(int argc, char **argv)
 {
     if (argc < 2 || (argv[1][0] == '-' && argv[1][1] == 'h'))
         return print_h();
-    data *data = init_data();
+    data *data = init_data(argv[1]);
     sfEvent event;
     void (*func[3])(struct data_s *, sfEvent) = {start_screen, play_screen, NULL};
 

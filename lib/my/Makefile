@@ -6,8 +6,9 @@
 ##
 
 SRC	=	my_insert.c	\
-		my_putstr.c	\
 		my_str_to_int.c	\
+		my_putstr.c	\
+		my_char_is_in_string.c	\
 		my_nbr_of_digit.c	\
 		my_str_replace.c	\
 		my_int_to_str.c	\

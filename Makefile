@@ -10,9 +10,13 @@ MAIN	=	main.c	\
 SRC	=		events.c	\
 			sprites_manager.c	\
 			time_manager.c	\
+			map_manager.c	\
 			move_manager.c	\
 			screens.c	\
 			sprites/background.c	\
+			sprites/safe_platform.c	\
+			sprites/enemy_platform.c	\
+			sprites/enemy_peak.c	\
 			sprites/hero.c	\
 
 OBJ	=	$(MAIN:.c=.o) $(SRC:.c=.o)

@@ -51,5 +51,4 @@ void create_hero(data *d)
     sfSprite_setTextureRect(hero->sprite, hero->rect);
     sfRenderWindow_drawSprite(d->window, hero->sprite, NULL);
     put_in_list(&d->objs, hero);
-
 }

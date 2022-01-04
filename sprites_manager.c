@@ -17,7 +17,8 @@ game_obj *create_obj(
 )
 {
     game_obj *obj = malloc(sizeof(game_obj));
-    obj->texture = sfTexture_createFromFile(filename, &rect);
+    if (filename != NULL)
+        obj->texture = sfTexture_createFromFile(filename, &rect);
     obj->sprite = sfSprite_create();
     obj->rect = rect;
     obj->clock = sfClock_create();
@@ -26,7 +27,8 @@ game_obj *create_obj(
     obj->action = NULL;
     obj->animate = NULL;
     sfSprite_setPosition(obj->sprite, position);
-    sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
+    if (filename != NULL)
+        sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     return obj;
 }

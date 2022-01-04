@@ -31,7 +31,7 @@ void jump(data *d)
         return;
     obj->rect.top += 80;
     obj->rect.left = 430;
-    sfVector2f jump = {0, -150};
+    sfVector2f jump = {0, -160};
     sfSprite_move(obj->sprite, jump);
     sfSprite_setTextureRect(obj->sprite, obj->rect);
 }
