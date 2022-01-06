@@ -28,6 +28,7 @@ NAME	=	my_runner
 LIB	=	-lcsfml-graphics	\
 		-lcsfml-window	\
 		-lcsfml-system	\
+		-lcsfml-audio	\
 		-llist	\
 		-lmy
 

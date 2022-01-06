@@ -8,6 +8,7 @@
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
 #include <SFML/System.h>
+#include <SFML/Audio.h>
 #include "list.h"
 
 #ifndef RUNNER_H
@@ -32,12 +33,14 @@ typedef struct data_s {
     int state;
     sfVideoMode mode;
     sfFont *font;
+    sfMusic *music;
 } data;
 
 typedef struct game_obj_s {
     enum GRP grp;
     sfSprite *sprite;
     sfTexture *texture;
+    char *texture_file;
     sfIntRect rect;
     sfVector2f position;
     void (*action)(struct game_obj_s *, data *d);

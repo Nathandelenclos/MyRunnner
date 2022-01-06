@@ -7,6 +7,7 @@
 
 #include "include/list.h"
 #include "include/runner.h"
+#include "include/my.h"
 #include <stdio.h>
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
@@ -22,6 +23,7 @@ game_obj *create_obj(
     obj->sprite = sfSprite_create();
     obj->rect = rect;
     obj->clock = sfClock_create();
+    obj->texture_file = my_strdup(filename);
     obj->position = position;
     obj->vector = vector;
     obj->action = NULL;
@@ -53,8 +55,14 @@ void sprites_manager(data *d)
 {
     game_obj *obj;
     node *tmp = d->objs;
+    int cond1 = 0;
+    int x = 0;
+    int y = 0;
     while (tmp != NULL) {
-        obj = (game_obj *) tmp->data;
+        obj = (game_obj *)tmp->data;
+        x = sfSprite_getPosition(obj->sprite).x;
+        y = sfSprite_getPosition(obj->sprite).y;
+        //if ((x > 0 && x < d->mode.width && y > 0 && y < d->mode.height) || obj->grp == BACKGROUND)
         sfRenderWindow_drawSprite(d->window, obj->sprite, NULL);
         tmp = tmp->next;
     }

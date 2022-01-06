@@ -17,12 +17,18 @@ void safe_platform_action(game_obj *obj, data *d)
 
 void create_safe_platform(data *d, int width, int height)
 {
-    int size = d->mode.height / 16;
-    sfIntRect rect = create_rect(size, size, 10, 10);
+    int size = 2048;
+    sfIntRect rect = create_rect(size, size, 0, 0);
     sfVector2f vector = {-6, 0};
-    sfVector2f pos = {size * (width + 1), size * (height + 1)};
+    sfVector2f
+        pos = {(size / 4) / 4 * (width), (size / 4) / 4 * (height + 1)};
     game_obj
-        *obj = create_obj("resources/square_blue.jpg", rect, pos, vector);
+        *obj =
+        create_obj("./Assets/Mossy Tileset/Mossy - FloatingPlatforms.png", rect,
+            pos, vector);
+    rect = create_rect(size / 4, size / 4, (size / 4) * 1.5, 0);
+    set_scale(d, obj->sprite, 0.25);
+    sfSprite_setTextureRect(obj->sprite, rect);
     obj->action = safe_platform_action;
     put_in_list(&d->objs, obj);
 }

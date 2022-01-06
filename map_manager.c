@@ -51,10 +51,13 @@ void create_elements(char *string, data *d)
         switch (string[i]) {
         case '1':
             create_safe_platform(d, width, height);
+            break;
         case '2':
             create_enemy_platform(d, width, height);
+            break;
         case '3':
             create_enemy_peak(d, width, height);
+            break;
         }
         width++;
     }

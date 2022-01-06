@@ -9,6 +9,7 @@
 #include "include/runner.h"
 #include <SFML/Window.h>
 #include <SFML/Graphics.h>
+#include <SFML/Audio.h>
 #include <stdlib.h>
 
 data *init_data(char *filename)
@@ -21,8 +22,11 @@ data *init_data(char *filename)
     d->state = START;
     d->window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle, NULL);
     d->font = sfFont_createFromFile("resources/font.ttf");
-    map_manager(filename, d);
+    d->music = sfMusic_createFromFile("resources/breathe.wav");
+    sfMusic_play(d->music);
+    sfMusic_setVolume(d->music, 25);
     create_hero(d);
+    map_manager(filename, d);
     create_background(d);
     return d;
 }
@@ -53,5 +57,7 @@ int main(int argc, char **argv)
         (*func[data->state])(data, event);
     }
     sfRenderWindow_destroy(data->window);
+    sfMusic_stop(data->music);
+    sfMusic_destroy(data->music);
     return 0;
 }
