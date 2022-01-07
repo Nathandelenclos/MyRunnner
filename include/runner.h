@@ -41,6 +41,7 @@ typedef struct data_s {
 
 typedef struct game_obj_s {
     enum GRP grp;
+    int animated_frame;
     sfSprite *sprite;
     sfTexture *texture;
     char *texture_file;
@@ -48,7 +49,7 @@ typedef struct game_obj_s {
     sfVector2f position;
     void (*action)(struct game_obj_s *, data *d);
     void (*animate)(struct game_obj_s *);
-    int *up;
+    int up;
     sfClock *clock;
     sfVector2f vector;
     sfTime time;

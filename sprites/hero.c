@@ -13,15 +13,22 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 
-char *new_filename(char *string)
+char *new_filename(game_obj *obj, int frame)
 {
-    char *filename = my_strdup(string);
+    char *filename = my_strdup(obj->texture_file);
+    int get_actual_frame = (filename[my_strlen(filename) - 5] - '0') +
+        ((filename[my_strlen(filename) - 6] - '0') * 10);
+    if (get_actual_frame >= frame) {
+        obj->animated_frame = 19;
+        return my_strdup(
+            "./Assets/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00000.png");
+    }
     if (filename[my_strlen(filename) - 5] == '9') {
         filename[my_strlen(filename) - 5] = '0';
-        if (filename[my_strlen(filename) - 6] == '1')
+        if (filename[my_strlen(filename) - 6] == '9')
             filename[my_strlen(filename) - 6] = '0';
         else
-            filename[my_strlen(filename) - 6] = '1';
+            filename[my_strlen(filename) - 6] += 1;
     } else {
         filename[my_strlen(filename) - 5] += 1;
     }
@@ -33,7 +40,7 @@ void animate(game_obj *obj)
     obj->time = sfClock_getElapsedTime(obj->clock);
     obj->seconds = obj->time.microseconds / 1000000.0;
     if (obj->seconds >= 0.025) {
-        char *filename = new_filename(obj->texture_file);
+        char *filename = new_filename(obj, obj->animated_frame);
         sfTexture *new = sfTexture_createFromFile(filename, &obj->rect);
         free(obj->texture_file);
         obj->texture_file = filename;
@@ -61,12 +68,14 @@ game_obj *hero_is_on(data *d)
 
 void action(game_obj *obj, data *d)
 {
-    sfVector2f down = {0, 10};
+    sfVector2f down = {0, 5};
     game_obj *is_on = hero_is_on(d);
     sfVector2f position = sfSprite_getPosition(obj->sprite);
-    if (!is_on || is_on->position.y >
-        (position.y + obj->rect.height / 2) || is_on->position.y + 128 < position.y )
+    if (!is_on || is_on->position.y > (position.y + obj->rect.height / 2) ||
+        is_on->position.y + 128 < position.y)
         sfSprite_move(obj->sprite, down);
+    else
+        obj->up = 1;
 }
 
 void create_hero(data *d)
@@ -81,6 +90,8 @@ void create_hero(data *d)
     hero->animate = animate;
     hero->action = action;
     hero->grp = HERO;
+    hero->animated_frame = 19;
+    hero->up = 1;
     sfRenderWindow_drawSprite(d->window, hero->sprite, NULL);
     put_in_list(&d->objs, hero);
 }
