@@ -20,6 +20,7 @@ void play_screen(struct data_s *data, sfEvent event)
     move_manager(data);
     time_manager(data);
     sprites_manager(data);
+    text_manager(data);
     sfRenderWindow_display(data->window);
 }
 
@@ -31,5 +32,6 @@ void start_screen(struct data_s *data, sfEvent event)
     move_manager(data);
     time_manager(data);
     sprites_manager(data);
+    text_manager(data);
     sfRenderWindow_display(data->window);
 }

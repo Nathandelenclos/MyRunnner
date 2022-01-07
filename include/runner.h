@@ -31,6 +31,7 @@ enum state {
 typedef struct data_s {
     node *objs;
     node *texts;
+    node *sounds;
     sfRenderWindow *window;
     int state;
     sfVideoMode mode;
@@ -62,6 +63,7 @@ typedef struct text_s {
     sfText *text;
     sfVector2f position;
     sfColor color;
+    void (*animate)(struct text_s *, data *d);
 } text;
 
 void event_manager(data *d, sfEvent event);
@@ -84,5 +86,10 @@ void start_screen(struct data_s *data, sfEvent event);
 void create_green_slime(data *d, int width, int height);
 void create_safe_platform_right(data *d, int width, int height);
 void create_safe_platform_left(data *d, int width, int height);
+text *create_text(char *string, sfColor color, sfVector2f po);
+void modify_string(data *d, char *before, char *after);
+void text_manager(data *d);
+void display_score(data *d);
+void create_texts(data *d);
 
 #endif

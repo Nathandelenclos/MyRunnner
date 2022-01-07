@@ -11,6 +11,7 @@ SRC	=		events.c	\
 			sprites_manager.c	\
 			time_manager.c	\
 			map_manager.c	\
+			text_manager.c	\
 			move_manager.c	\
 			screens.c	\
 			sprites/background.c	\
@@ -21,6 +22,7 @@ SRC	=		events.c	\
 			sprites/enemy_peak.c	\
 			sprites/green_slime.c	\
 			sprites/hero.c	\
+			texts/score.c	\
 
 OBJ	=	$(MAIN:.c=.o) $(SRC:.c=.o)
 

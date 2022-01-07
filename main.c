@@ -18,6 +18,7 @@ data *init_data(char *filename)
     data *d = malloc(sizeof(data));
     d->objs = NULL;
     d->texts = NULL;
+    d->sounds = NULL;
     d->mode = mode;
     d->state = START;
     d->window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle, NULL);
@@ -27,6 +28,7 @@ data *init_data(char *filename)
     sfMusic_play(d->music);
     sfMusic_setVolume(d->music, 25);
     create_hero(d);
+    create_texts(d);
     map_manager(filename, d);
     create_background(d);
     return d;

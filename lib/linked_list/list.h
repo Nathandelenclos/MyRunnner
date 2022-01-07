@@ -23,6 +23,5 @@ int len_list(node *list);
 void insert_in_list(node *previous, void *data);
 void delete_first(node **head);
 void reverse_list(node **head_ref);
-void swap_element(node **head, int pos1, int pos2);
 
 #endif

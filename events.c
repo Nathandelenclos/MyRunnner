@@ -29,13 +29,14 @@ void jump(data *d, int mvt)
     }
     if (obj->up) {
         obj->animated_frame = 15;
-        free(obj->texture_file);
-        obj->texture_file =
-            my_strdup(
-                "./Assets/BlueWizard/2BlueWizardJump/DashEffect/BlueWizardDash_00000.png");
+        sfIntRect rect = create_rect(512 * 16, 512, 0, 0);
         sfTexture
-            *new = sfTexture_createFromFile(obj->texture_file, &obj->rect);
+            *new = sfTexture_createFromFile(
+            "./Assets/BlueWizard/2BlueWizardJump/DashEffect/spritesheet.png",
+            &rect);
         sfSprite_setTexture(obj->sprite, new, sfTrue);
+        obj->rect.left = 512 * 15;
+        obj->animated_frame = 15;
         sfVector2f jump = {0, mvt};
         sfSprite_move(obj->sprite, jump);
         obj->up = 0;
@@ -44,7 +45,7 @@ void jump(data *d, int mvt)
 
 void event_manager(data *d, sfEvent event)
 {
-    switch (event.type){
+    switch (event.type) {
     case sfEvtClosed:
         event_closed(d);
         break;

@@ -53,6 +53,9 @@ void create_elements(char *string, data *d)
         case '3':
             create_safe_platform_left(d, width, height);
             break;
+        case '4':
+            create_green_slime(d, width, height);
+            break;
         }
         width++;
     }

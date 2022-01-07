@@ -20,8 +20,9 @@ void time_manager(data *d)
     node *tmp = d->objs;
     while (tmp != NULL) {
         obj = (game_obj *) tmp->data;
-        if (obj->animate != NULL)
+        if (obj->animate != NULL) {
             obj->animate(obj);
+        }
         tmp = tmp->next;
     }
 }

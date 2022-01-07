@@ -13,7 +13,6 @@ SRC	=	put_in_list.c	\
 		delete_first.c	\
 		insert_in_list.c	\
 		reverse_list.c	\
-		swap_element.c	\
 
 OBJ	=	$(SRC:.c=.o)
 

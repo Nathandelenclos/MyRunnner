@@ -23,6 +23,7 @@ int is_integer(float f)
 void move_manager(data *d)
 {
     game_obj *obj;
+    text *t;
     node *tmp = d->objs;
     d->scrolling += 6;
 
@@ -30,6 +31,13 @@ void move_manager(data *d)
         obj = (game_obj *) tmp->data;
         if (obj->action != NULL)
             obj->action(obj, d);
+        tmp = tmp->next;
+    }
+    tmp = d->texts;
+    while (tmp != NULL) {
+        t = (text *) tmp->data;
+        if (t->animate != NULL)
+            t->animate(t, d);
         tmp = tmp->next;
     }
 }
