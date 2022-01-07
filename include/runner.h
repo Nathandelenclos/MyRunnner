@@ -16,7 +16,9 @@
 
 enum GRP {
     HERO,
-    BACKGROUND
+    BACKGROUND,
+    MAP,
+    ENEMY
 };
 
 enum state {
@@ -34,6 +36,7 @@ typedef struct data_s {
     sfVideoMode mode;
     sfFont *font;
     sfMusic *music;
+    int scrolling;
 } data;
 
 typedef struct game_obj_s {
@@ -45,6 +48,7 @@ typedef struct game_obj_s {
     sfVector2f position;
     void (*action)(struct game_obj_s *, data *d);
     void (*animate)(struct game_obj_s *);
+    int *up;
     sfClock *clock;
     sfVector2f vector;
     sfTime time;
@@ -76,5 +80,8 @@ sfIntRect create_rect(int width, int height, int left, int top);
 void move_manager(data *d);
 void play_screen(struct data_s *data, sfEvent event);
 void start_screen(struct data_s *data, sfEvent event);
+void create_green_slime(data *d, int width, int height);
+void create_safe_platform_right(data *d, int width, int height);
+void create_safe_platform_left(data *d, int width, int height);
 
 #endif

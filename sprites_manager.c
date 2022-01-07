@@ -55,14 +55,8 @@ void sprites_manager(data *d)
 {
     game_obj *obj;
     node *tmp = d->objs;
-    int cond1 = 0;
-    int x = 0;
-    int y = 0;
     while (tmp != NULL) {
         obj = (game_obj *)tmp->data;
-        x = sfSprite_getPosition(obj->sprite).x;
-        y = sfSprite_getPosition(obj->sprite).y;
-        //if ((x > 0 && x < d->mode.width && y > 0 && y < d->mode.height) || obj->grp == BACKGROUND)
         sfRenderWindow_drawSprite(d->window, obj->sprite, NULL);
         tmp = tmp->next;
     }

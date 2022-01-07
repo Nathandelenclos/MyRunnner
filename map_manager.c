@@ -5,11 +5,8 @@
 ** Map manager
 */
 
-#include "include/list.h"
 #include "include/runner.h"
 #include <stdio.h>
-#include <SFML/System.h>
-#include <SFML/Graphics.h>
 #include <stdlib.h>
 #include "include/my.h"
 #include <unistd.h>
@@ -39,8 +36,6 @@ char *file_to_str(char *filename)
 
 void create_elements(char *string, data *d)
 {
-    int index = 0;
-
     int width = 0;
     int height = 0;
     for (int i = 0; i < my_strlen(string); ++i) {
@@ -53,10 +48,10 @@ void create_elements(char *string, data *d)
             create_safe_platform(d, width, height);
             break;
         case '2':
-            create_enemy_platform(d, width, height);
+            create_safe_platform_right(d, width, height);
             break;
         case '3':
-            create_enemy_peak(d, width, height);
+            create_safe_platform_left(d, width, height);
             break;
         }
         width++;

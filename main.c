@@ -23,6 +23,7 @@ data *init_data(char *filename)
     d->window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle, NULL);
     d->font = sfFont_createFromFile("resources/font.ttf");
     d->music = sfMusic_createFromFile("resources/breathe.wav");
+    d->scrolling = 250;
     sfMusic_play(d->music);
     sfMusic_setVolume(d->music, 25);
     create_hero(d);
