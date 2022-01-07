@@ -19,12 +19,14 @@ data *init_data(char *filename)
     d->objs = NULL;
     d->texts = NULL;
     d->sounds = NULL;
+    d->textures = NULL;
     d->mode = mode;
     d->state = START;
     d->window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle, NULL);
     d->font = sfFont_createFromFile("resources/font.ttf");
     d->music = sfMusic_createFromFile("resources/breathe.wav");
     d->scrolling = 250;
+    create_textures(d);
     sfMusic_play(d->music);
     sfMusic_setVolume(d->music, 25);
     create_hero(d);

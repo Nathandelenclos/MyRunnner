@@ -5,22 +5,15 @@
 ** task06
 */
 
-int value_of_string(char const *s)
-{
-    int result = 0;
-    for (int count = 0; s[count] != '\0'; ++count)
-        result += s[count];
-    return result;
-}
+#include "my.h"
 
 int my_strcmp(char const *s1, char const *s2)
 {
-    int count1 = value_of_string(s1);
-    int count2 = value_of_string(s2);
-    if (count1 > count2)
-        return (1);
-    else if (count1 < count2)
-        return (-1);
-    else
-        return (0);
+    if (my_strlen(s1) != my_strlen(s2))
+        return 0;
+    for (int i = 0; i < my_strlen(s1); ++i) {
+        if (s1[i] != s2[i])
+            return 0;
+    }
+    return 1;
 }

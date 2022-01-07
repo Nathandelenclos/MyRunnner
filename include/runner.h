@@ -28,10 +28,13 @@ enum state {
     RESUME = 3
 };
 
+struct game_obj_s;
+
 typedef struct data_s {
     node *objs;
     node *texts;
     node *sounds;
+    node *textures;
     sfRenderWindow *window;
     int state;
     sfVideoMode mode;
@@ -40,15 +43,22 @@ typedef struct data_s {
     int scrolling;
 } data;
 
+typedef struct texture_s {
+    sfTexture *texture;
+    sfIntRect rect;
+    char *filename;
+    void (*animate)(struct game_obj_s *);
+    char *name;
+} texture;
+
 typedef struct game_obj_s {
     enum GRP grp;
     int animated_frame;
     sfSprite *sprite;
-    sfTexture *texture;
-    char *texture_file;
+    texture *texture;
     sfIntRect rect;
     sfVector2f position;
-    void (*action)(struct game_obj_s *, data *d);
+    void (*action)(struct game_obj_s *, data *);
     void (*animate)(struct game_obj_s *);
     int up;
     sfClock *clock;
@@ -71,8 +81,7 @@ void sprites_manager(data *d);
 void create_background(data *d);
 void create_hero(data *d);
 game_obj *create_obj(
-    char *filename, sfIntRect rect, sfVector2f position, sfVector2f vector
-);
+    data *d, char *texture_name, sfIntRect rect, sfVector2f *vector);
 void set_scale(data *d, sfSprite *sprite, float multiplier);
 void time_manager(data *d);
 void create_safe_platform(data *d, int width, int height);
@@ -91,5 +100,11 @@ void modify_string(data *d, char *before, char *after);
 void text_manager(data *d);
 void display_score(data *d);
 void create_texts(data *d);
+texture *get_texture(data *d, char *name);
+void create_hero_texture(data *d);
+void create_background_textures(data *d);
+void create_textures(data *d);
+void create_green_slime_texture(data *d);
+void create_platform_texture(data *d);
 
 #endif

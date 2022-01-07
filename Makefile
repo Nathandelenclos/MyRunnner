@@ -12,17 +12,20 @@ SRC	=		events.c	\
 			time_manager.c	\
 			map_manager.c	\
 			text_manager.c	\
+			texture_manager.c	\
 			move_manager.c	\
 			screens.c	\
 			sprites/background.c	\
 			sprites/safe_platform.c	\
 			sprites/safe_platform_border_right.c	\
 			sprites/safe_platform_border_left.c	\
-			sprites/enemy_platform.c	\
-			sprites/enemy_peak.c	\
 			sprites/green_slime.c	\
 			sprites/hero.c	\
 			texts/score.c	\
+			textures/hero.c	\
+			textures/background.c	\
+			textures/green_slime.c	\
+			textures/platform.c	\
 
 OBJ	=	$(MAIN:.c=.o) $(SRC:.c=.o)
 

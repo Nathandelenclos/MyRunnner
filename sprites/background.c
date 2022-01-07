@@ -31,11 +31,12 @@ void create_background(data *d)
     sfVector2f pos[2] = {{0, 0}, {(320 * multiplier), 0}};
     sfVector2f vector = {-7, 0};
     for (int i = 0; i < 4; ++i) {
-        char filename[37] = "./Assets/DarkForest/DarkForest_4.png";
-        filename[36 - 5] -= i;
+        char filename[13] = "DarkForest_4";
+        filename[12 - 1] -= i;
         vector.x++;
         for (int j = 0; j < 2; ++j) {
-            game_obj *bg = create_obj(filename, rect, pos[j], vector);
+            sfVector2f v[2] = {pos[j], vector};
+            game_obj *bg = create_obj(d, filename, rect, v);
             bg->grp = BACKGROUND;
             bg->action = background_action;
             sfRenderWindow_drawSprite(d->window, bg->sprite, NULL);

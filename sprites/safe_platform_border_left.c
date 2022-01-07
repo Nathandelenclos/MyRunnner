@@ -20,18 +20,13 @@ void safe_platform_left_action(game_obj *obj, data *d)
 void create_safe_platform_left(data *d, int width, int height)
 {
     int size = 2048;
-    sfIntRect rect = create_rect(size, size, 0, 0);
+    sfIntRect rect = create_rect(size / 4, size / 4, (size / 4) * 0, (size / 4) * 3);
     sfVector2f vector = {-6, 0};
-    sfVector2f
-        pos = {128 * (width), 128 * (height)};
-    game_obj
-        *obj =
-        create_obj("./Assets/Mossy Tileset/Mossy - FloatingPlatforms.png", rect,
-            pos, vector);
-    rect = create_rect(size / 4, size / 4, (size / 4) * 0, (size / 4) * 3);
+    sfVector2f pos = {128 * (width), 128 * (height)};
+    sfVector2f v[2] = {pos, vector};
+    game_obj *obj = create_obj(d, "platform", rect,v);
     obj->grp = MAP;
     set_scale(d, obj->sprite, 0.25);
-    sfSprite_setTextureRect(obj->sprite, rect);
     obj->action = safe_platform_left_action;
     put_in_list(&d->objs, obj);
 }

@@ -14,23 +14,19 @@
 #include <stdlib.h>
 
 game_obj *create_obj(
-    char *filename, sfIntRect rect, sfVector2f position, sfVector2f vector
-)
+    data *d, char *texture_name, sfIntRect rect, sfVector2f *vector)
 {
     game_obj *obj = malloc(sizeof(game_obj));
-    if (filename != NULL)
-        obj->texture = sfTexture_createFromFile(filename, &rect);
+    obj->texture = get_texture(d, texture_name);
     obj->sprite = sfSprite_create();
     obj->rect = rect;
     obj->clock = sfClock_create();
-    obj->texture_file = my_strdup(filename);
-    obj->position = position;
-    obj->vector = vector;
+    obj->position = vector[0];
+    obj->vector = vector[1];
     obj->action = NULL;
     obj->animate = NULL;
-    sfSprite_setPosition(obj->sprite, position);
-    if (filename != NULL)
-        sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
+    sfSprite_setPosition(obj->sprite, vector[0]);
+    sfSprite_setTexture(obj->sprite, obj->texture->texture, sfTrue);
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     return obj;
 }
@@ -56,7 +52,7 @@ void sprites_manager(data *d)
     game_obj *obj;
     node *tmp = d->objs;
     while (tmp != NULL) {
-        obj = (game_obj *)tmp->data;
+        obj = (game_obj *) tmp->data;
         sfRenderWindow_drawSprite(d->window, obj->sprite, NULL);
         tmp = tmp->next;
     }

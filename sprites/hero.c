@@ -18,13 +18,7 @@ void animate(game_obj *obj)
     obj->time = sfClock_getElapsedTime(obj->clock);
     obj->seconds = obj->time.microseconds / 1000000.0;
     if (obj->seconds >= 0.025) {
-        if (obj->rect.left == 0) {
-            obj->animated_frame = 20;
-            sfSprite_setTexture(obj->sprite, obj->texture, sfTrue);
-            obj->rect.left = 512 * 19;
-        } else {
-            obj->rect.left -= 512;
-        }
+        obj->texture->animate(obj);
         sfSprite_setTextureRect(obj->sprite, obj->rect);
         sfVector2f scale = {0.70, 0.70};
         sfSprite_setScale(obj->sprite, scale);
@@ -61,14 +55,11 @@ void action(game_obj *obj, data *d)
 
 void create_hero(data *d)
 {
-    sfIntRect rect = create_rect(10240, 512, 0, 0);
-    sfVector2f pos = {100, 0};
-    sfVector2f vector = {0, 0};
-    char filename[60] =
-        "./Assets/BlueWizard/2BlueWizardWalk/spritesheet.png";
-    game_obj *hero = create_obj(filename, rect, pos, vector);
+
+    sfVector2f vector[2] = {{100, 0},  {0, 0}};
+    sfIntRect rect = create_rect(512, 512, 512 * 19, 0);
+    game_obj *hero = create_obj(d, "hero", rect, vector);
     set_scale(d, hero->sprite, 0.5);
-    hero->rect = create_rect(512, 512, 512 * 19, 0);
     hero->animate = animate;
     hero->action = action;
     hero->grp = HERO;
