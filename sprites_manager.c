@@ -52,9 +52,14 @@ void sprites_manager(data *d)
 {
     game_obj *obj;
     node *tmp = d->objs;
+    sfVector2f position;
+    sfVector2f scale;
     while (tmp != NULL) {
         obj = (game_obj *) tmp->data;
-        sfRenderWindow_drawSprite(d->window, obj->sprite, NULL);
+        position = sfSprite_getPosition(obj->sprite);
+        scale = sfSprite_getScale(obj->sprite);
+        if (position.x + ((obj->rect.width * scale.x)) > 0 && position.x < d->mode.width)
+            sfRenderWindow_drawSprite(d->window, obj->sprite, NULL);
         tmp = tmp->next;
     }
 }
