@@ -32,7 +32,6 @@ void create_safe_platform(data *d, int width, int height)
     set_scale(d, obj->sprite, 0.25);
     obj->action = safe_platform_action;
     int r = rand() % 11;
-    my_printf("r = %i\n", r);
     if (r == 5)
         create_green_slime(d, width, height - 1);
     put_in_list(&d->objs, obj);
