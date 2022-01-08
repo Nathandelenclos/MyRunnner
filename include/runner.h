@@ -117,7 +117,7 @@ void create_textures(data *d);
 void create_green_slime_texture(data *d);
 void create_platform_texture(data *d);
 void create_end(data *d, int width, int height);
-game_obj *hero_is_on(data *d, enum group grp);
+node *hero_is_on(data *d, enum group grp);
 game_obj *get_hero(data *d);
 void sound_manager(data *d);
 void destroy_music(data *d);

@@ -12,13 +12,26 @@
 #include <SFML/Graphics.h>
 #include <stdio.h>
 
+game_obj *get_hero(data *d)
+{
+    game_obj *obj = NULL;
+    node *tmp = d->objs;
+    while (tmp != NULL) {
+        obj = (game_obj *) tmp->data;
+        if (obj->grp == HERO)
+            return obj;
+        tmp = tmp->next;
+    }
+    return NULL;
+}
+
 void end_action(game_obj *obj, data *d)
 {
     sfSprite_move(obj->sprite, obj->vector);
     game_obj *hero = get_hero(d);
     if (hero == NULL)
         return;
-    game_obj *victory = hero_is_on(d, VICTORY);
+    node *victory = hero_is_on(d, VICTORY);
     if (victory) {
         sfRenderWindow_close(d->window);
         my_printf("Vous avez Gagner ! avec un score de %i", (int) (d->scrolling / 128));

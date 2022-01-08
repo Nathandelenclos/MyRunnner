@@ -19,10 +19,30 @@
 #include <SFML/Graphics.h>
 #include <stdlib.h>
 
+int hero_collide(data *d, game_obj *hero, node *mobs_x)
+{
+    node *tmp = mobs_x;
+    game_obj *tmp_obj = NULL;
+    int position_hero_y =
+        sfSprite_getPosition(hero->sprite).y + hero->rect.height / 2;
+    while (tmp != NULL) {
+        tmp_obj = (game_obj *) tmp->data;
+        if (position_hero_y <= tmp_obj->position.y + (tmp_obj->rect.height * 0.4) &&
+            position_hero_y >= tmp_obj->position.y) {
+            return 1;
+        }
+        tmp = tmp->next;
+    }
+    return 0;
+}
+
 void green_slime_action(game_obj *obj, data *d)
 {
     sfSprite_move(obj->sprite, obj->vector);
-
+    if (hero_collide(d, get_hero(d), hero_is_on(d, ENEMY))) {
+        my_printf("bonsoir oui");
+        sfRenderWindow_close(d->window);
+    }
 }
 
 void green_slime_animate(game_obj *obj)

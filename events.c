@@ -35,7 +35,7 @@ void jump_2(data *d, int mvt, game_obj *obj)
     put_in_list(&d->sounds, s);
     sfMusic_play(s->music);
     sfSprite_move(obj->sprite, jump);
-    obj->up = 0;
+    obj->up -= 1;
 }
 
 void jump(data *d, int mvt)
@@ -46,7 +46,7 @@ void jump(data *d, int mvt)
         obj = (game_obj *) tmp->data;
         tmp = tmp->next;
     }
-    if (obj->up) {
+    if (obj->up > 0) {
         jump_2(d, mvt, obj);
     }
 }
