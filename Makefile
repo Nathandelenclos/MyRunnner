@@ -12,6 +12,7 @@ SRC	=		events.c	\
 			time_manager.c	\
 			map_manager.c	\
 			text_manager.c	\
+			sound_manager.c	\
 			texture_manager.c	\
 			move_manager.c	\
 			screens.c	\

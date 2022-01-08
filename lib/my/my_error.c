@@ -11,5 +11,5 @@
 int my_error(char *m)
 {
     write(2, m, my_strlen(m));
-    return (0);
+    return (84);
 }

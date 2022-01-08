@@ -25,14 +25,12 @@ data *init_data(char *filename)
     d->state = START;
     d->window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle, NULL);
     d->font = sfFont_createFromFile("resources/font.ttf");
-    d->music = sfMusic_createFromFile("resources/breathe.wav");
     d->scrolling = 250;
     create_textures(d);
-    sfMusic_play(d->music);
-    sfMusic_setVolume(d->music, 25);
     create_hero(d);
     create_texts(d);
     map_manager(filename, d);
+    sound_manager(d);
     create_background(d);
     return d;
 }
@@ -52,21 +50,20 @@ int print_h(void)
 
 int main(int argc, char **argv)
 {
-    srand( time( NULL ) );
-    if (argc < 2) {
-        my_printf("./my_runner: bad arguments: 0 given but 1 is required retry with -h");
-        return 84;
-    }
+    srand(time(NULL));
+    if (argc < 2)
+        return my_error("./my_runner: bad arguments: 0 given but 1 is required retry with -h");
     if (argc < 2 || (argv[1][0] == '-' && argv[1][1] == 'h'))
         return print_h();
     data *data = init_data(argv[1]);
     sfEvent event;
-    void (*func[3])(struct data_s *, sfEvent) = {start_screen, play_screen, NULL};
+    void (*func[3])(struct data_s *, sfEvent) = {
+        start_screen, play_screen, NULL
+    };
     sfRenderWindow_setFramerateLimit(data->window, 60);
     while (sfRenderWindow_isOpen(data->window))
         (*func[data->state])(data, event);
     sfRenderWindow_destroy(data->window);
-    sfMusic_stop(data->music);
-    sfMusic_destroy(data->music);
+    destroy_music(data);
     return 0;
 }

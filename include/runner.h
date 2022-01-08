@@ -29,6 +29,11 @@ enum state {
     RESUME = 3
 };
 
+enum sound_grp {
+    JUMP,
+    MUSIC
+};
+
 struct game_obj_s;
 
 typedef struct data_s {
@@ -40,7 +45,6 @@ typedef struct data_s {
     int state;
     sfVideoMode mode;
     sfFont *font;
-    sfMusic *music;
     int scrolling;
 } data;
 
@@ -67,6 +71,11 @@ typedef struct game_obj_s {
     sfTime time;
     float seconds;
 } game_obj;
+
+typedef struct sound_d {
+    sfMusic *music;
+    enum sound_grp grp;
+} sound;
 
 typedef struct text_s {
     sfFont *font;
@@ -110,5 +119,8 @@ void create_platform_texture(data *d);
 void create_end(data *d, int width, int height);
 game_obj *hero_is_on(data *d, enum group grp);
 game_obj *get_hero(data *d);
+void sound_manager(data *d);
+void destroy_music(data *d);
+sound *create_sound(char *filename, enum sound_grp grp, float volume);
 
 #endif
