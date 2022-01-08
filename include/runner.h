@@ -14,11 +14,12 @@
 #ifndef RUNNER_H
     #define RUNNER_H
 
-enum GRP {
+enum group {
     HERO,
     BACKGROUND,
     MAP,
-    ENEMY
+    ENEMY,
+    VICTORY
 };
 
 enum state {
@@ -52,7 +53,7 @@ typedef struct texture_s {
 } texture;
 
 typedef struct game_obj_s {
-    enum GRP grp;
+    enum group grp;
     int animated_frame;
     sfSprite *sprite;
     texture *texture;
@@ -106,5 +107,8 @@ void create_background_textures(data *d);
 void create_textures(data *d);
 void create_green_slime_texture(data *d);
 void create_platform_texture(data *d);
+void create_end(data *d, int width, int height);
+game_obj *hero_is_on(data *d, enum group grp);
+game_obj *get_hero(data *d);
 
 #endif

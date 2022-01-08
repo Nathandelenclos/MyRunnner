@@ -17,6 +17,8 @@ texture *get_texture(data *d, char *name)
 {
     texture *t;
     node *tmp = d->textures;
+    if (name == NULL)
+        return NULL;
     while (tmp != NULL) {
         t = (texture *)tmp->data;
         if (my_strcmp(t->name, name))

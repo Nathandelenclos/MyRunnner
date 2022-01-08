@@ -11,6 +11,7 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include <stdlib.h>
+#include <time.h>
 
 data *init_data(char *filename)
 {
@@ -51,6 +52,7 @@ int print_h(void)
 
 int main(int argc, char **argv)
 {
+    srand( time( NULL ) );
     if (argc < 2 || (argv[1][0] == '-' && argv[1][1] == 'h'))
         return print_h();
     data *data = init_data(argv[1]);

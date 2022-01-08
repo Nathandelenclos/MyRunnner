@@ -16,6 +16,7 @@ SRC	=		events.c	\
 			move_manager.c	\
 			screens.c	\
 			sprites/background.c	\
+			sprites/end.c	\
 			sprites/safe_platform.c	\
 			sprites/safe_platform_border_right.c	\
 			sprites/safe_platform_border_left.c	\

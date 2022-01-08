@@ -26,7 +26,8 @@ game_obj *create_obj(
     obj->action = NULL;
     obj->animate = NULL;
     sfSprite_setPosition(obj->sprite, vector[0]);
-    sfSprite_setTexture(obj->sprite, obj->texture->texture, sfTrue);
+    if (obj->texture != NULL)
+        sfSprite_setTexture(obj->sprite, obj->texture->texture, sfTrue);
     sfSprite_setTextureRect(obj->sprite, obj->rect);
     return obj;
 }

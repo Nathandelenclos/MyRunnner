@@ -56,6 +56,8 @@ void create_elements(char *string, data *d)
         case '4':
             create_green_slime(d, width, height);
             break;
+        case 'v':
+            create_end(d, width, height);
         }
         width++;
     }
