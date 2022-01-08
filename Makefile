@@ -14,6 +14,7 @@ SRC	=		events.c	\
 			text_manager.c	\
 			sound_manager.c	\
 			texture_manager.c	\
+			screen_manager.c	\
 			move_manager.c	\
 			screens.c	\
 			sprites/background.c	\
@@ -28,6 +29,7 @@ SRC	=		events.c	\
 			textures/background.c	\
 			textures/green_slime.c	\
 			textures/platform.c	\
+			screens/play.c	\
 
 OBJ	=	$(MAIN:.c=.o) $(SRC:.c=.o)
 

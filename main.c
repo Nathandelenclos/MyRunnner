@@ -13,28 +13,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-data *init_data(char *filename)
-{
-    sfVideoMode mode = {1080 * 1.3, 720 * 1.3, 32};
-    data *d = malloc(sizeof(data));
-    d->objs = NULL;
-    d->texts = NULL;
-    d->sounds = NULL;
-    d->textures = NULL;
-    d->mode = mode;
-    d->state = START;
-    d->window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle, NULL);
-    d->font = sfFont_createFromFile("resources/font.ttf");
-    d->scrolling = 250;
-    create_textures(d);
-    create_hero(d);
-    create_texts(d);
-    map_manager(filename, d);
-    sound_manager(d);
-    create_background(d);
-    return d;
-}
-
 int print_h(void)
 {
     my_printf("Finite runner created with CSFML\n\n");
@@ -52,18 +30,30 @@ int main(int argc, char **argv)
 {
     srand(time(NULL));
     if (argc < 2)
-        return my_error("./my_runner: bad arguments: 0 given but 1 is required retry with -h");
+        return my_error(
+            "./my_runner: bad arguments: 0 given but 1 is required retry with -h");
     if (argc < 2 || (argv[1][0] == '-' && argv[1][1] == 'h'))
         return print_h();
-    data *data = init_data(argv[1]);
+    screen *hub = malloc(sizeof(screen));
+    hub->state = PLAY;
+    sfVideoMode mode = {1080 * 1.3, 720 * 1.3, 32};
+    sfRenderWindow
+        *window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle,
+        NULL);
+    screen_manager(hub, argv[1], window, mode);
+    data *t = (data *) hub->datas->data;
+    node *tmp = NULL;
     sfEvent event;
-    void (*func[3])(struct data_s *, sfEvent) = {
-        start_screen, play_screen, NULL
-    };
-    sfRenderWindow_setFramerateLimit(data->window, 60);
-    while (sfRenderWindow_isOpen(data->window))
-        (*func[data->state])(data, event);
-    sfRenderWindow_destroy(data->window);
-    destroy_music(data);
+    tmp = hub->datas;
+    sfRenderWindow_setFramerateLimit(window, 60);
+    while (sfRenderWindow_isOpen(window)) {
+        while (tmp != NULL && t->state != hub->state) {
+            t = (data *) tmp->data;
+            tmp = tmp->next;
+        }
+        t->screen(t, event);
+    }
+    sfRenderWindow_destroy(window);
+    destroy_music(t);
     return 0;
 }

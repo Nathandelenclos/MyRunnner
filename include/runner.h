@@ -35,6 +35,12 @@ enum sound_grp {
 };
 
 struct game_obj_s;
+struct data_s;
+
+typedef struct screen_s {
+    enum state state;
+    node *datas;
+} screen;
 
 typedef struct data_s {
     node *objs;
@@ -42,10 +48,12 @@ typedef struct data_s {
     node *sounds;
     node *textures;
     sfRenderWindow *window;
-    int state;
+    screen *hub;
+    enum state state;
     sfVideoMode mode;
     sfFont *font;
     int scrolling;
+    void (*screen)(struct data_s *data, sfEvent event);
 } data;
 
 typedef struct texture_s {
@@ -91,7 +99,8 @@ void sprites_manager(data *d);
 void create_background(data *d);
 void create_hero(data *d);
 game_obj *create_obj(
-    data *d, char *texture_name, sfIntRect rect, sfVector2f *vector);
+    data *d, char *texture_name, sfIntRect rect, sfVector2f *vector
+);
 void set_scale(data *d, sfSprite *sprite, float multiplier);
 void time_manager(data *d);
 void create_safe_platform(data *d, int width, int height);
@@ -100,8 +109,6 @@ void create_enemy_peak(data *d, int width, int height);
 void map_manager(char *map_name, data *d);
 sfIntRect create_rect(int width, int height, int left, int top);
 void move_manager(data *d);
-void play_screen(struct data_s *data, sfEvent event);
-void start_screen(struct data_s *data, sfEvent event);
 void create_green_slime(data *d, int width, int height);
 void create_safe_platform_right(data *d, int width, int height);
 void create_safe_platform_left(data *d, int width, int height);
@@ -122,5 +129,7 @@ game_obj *get_hero(data *d);
 void sound_manager(data *d);
 void destroy_music(data *d);
 sound *create_sound(char *filename, enum sound_grp grp, float volume);
+void screen_manager(screen *s, char *filename, sfRenderWindow *window, sfVideoMode mode);
+void *data_play(screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode);
 
 #endif
