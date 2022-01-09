@@ -152,4 +152,7 @@ game_obj *is_on_btn(data *d, sfMouseButtonEvent event);
 void *data_win(
     screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
 );
+void *data_pause(
+    screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
+);
 #endif

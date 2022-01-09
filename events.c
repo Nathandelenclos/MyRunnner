@@ -59,7 +59,7 @@ void event_manager(data *d, sfEvent event)
         break;
     case sfEvtKeyPressed:
         if (event.key.code == sfKeyEscape)
-            event_closed(d);
+            d->hub->state = RESUME;
         if (event.key.code == sfKeyUp)
             jump(d, -128 * 2);
         if (event.key.code == sfKeyDown)

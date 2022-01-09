@@ -19,4 +19,5 @@ void screen_manager(screen *s, char *filename, sfRenderWindow *window, sfVideoMo
     data_play(s, my_strdup(filename), window, mode);
     data_death(s, my_strdup(filename), window, mode);
     data_win(s, my_strdup(filename), window, mode);
+    data_pause(s, my_strdup(filename), window, mode);
 }
