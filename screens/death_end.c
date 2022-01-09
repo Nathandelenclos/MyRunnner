@@ -48,7 +48,8 @@ void create_data_death(data *d)
     position.x = (d->mode.width / 3.5) + 40;
     scale.y = 3;
     scale.x = 3;
-    put_in_list(&d->texts, create_text("You are dead !", sfBlack, position, scale));
+    put_in_list(&d->texts,
+        create_text("You are dead !", sfBlack, position, scale));
     create_background_textures(d);
     create_background(d);
 }

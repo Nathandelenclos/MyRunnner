@@ -34,6 +34,26 @@ char *file_to_str(char *filename)
     return data;
 }
 
+void check_element(char c, data *d, int height, int width)
+{
+    switch (c) {
+    case '1':
+        create_safe_platform(d, width, height);
+        break;
+    case '2':
+        create_safe_platform_right(d, width, height);
+        break;
+    case '3':
+        create_safe_platform_left(d, width, height);
+        break;
+    case '4':
+        create_green_slime(d, width, height);
+        break;
+    case 'v':
+        create_end(d, width, height);
+    }
+}
+
 void create_elements(char *string, data *d)
 {
     int width = 0;
@@ -43,22 +63,7 @@ void create_elements(char *string, data *d)
             height++;
             width = 0;
         }
-        switch (string[i]) {
-        case '1':
-            create_safe_platform(d, width, height);
-            break;
-        case '2':
-            create_safe_platform_right(d, width, height);
-            break;
-        case '3':
-            create_safe_platform_left(d, width, height);
-            break;
-        case '4':
-            create_green_slime(d, width, height);
-            break;
-        case 'v':
-            create_end(d, width, height);
-        }
+        check_element(string[i], d, height, width);
         width++;
     }
 }

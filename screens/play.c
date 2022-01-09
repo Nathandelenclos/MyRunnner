@@ -24,7 +24,19 @@ void play_screen(struct data_s *data, sfEvent event)
     sfRenderWindow_display(data->window);
 }
 
-void *data_play(screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode)
+void create_data_play(data *d, char *filename)
+{
+    create_textures(d);
+    create_hero(d);
+    create_texts(d);
+    map_manager(filename, d);
+    sound_manager(d);
+    create_background(d);
+}
+
+void *data_play(
+    screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
+)
 {
     data *d = malloc(sizeof(data));
     d->objs = NULL;
@@ -39,11 +51,6 @@ void *data_play(screen *screen1, char *filename, sfRenderWindow *window, sfVideo
     d->scrolling = 250;
     d->screen = play_screen;
     d->filemap = filename;
-    create_textures(d);
-    create_hero(d);
-    create_texts(d);
-    map_manager(filename, d);
-    sound_manager(d);
-    create_background(d);
+    create_data_play(d, filename);
     put_in_list(&screen1->datas, d);
 }

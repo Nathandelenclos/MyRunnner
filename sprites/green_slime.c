@@ -20,7 +20,8 @@ int hero_collide(data *d, game_obj *hero, node *mobs_x)
         sfSprite_getPosition(hero->sprite).y + hero->rect.height / 2;
     while (tmp != NULL) {
         tmp_obj = (game_obj *) tmp->data;
-        if (position_hero_y <= tmp_obj->position.y + (tmp_obj->rect.height * 0.4) &&
+        if (position_hero_y <=
+            tmp_obj->position.y + (tmp_obj->rect.height * 0.4) &&
             position_hero_y >= tmp_obj->position.y) {
             return 1;
         }

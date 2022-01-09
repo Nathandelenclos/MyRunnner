@@ -26,21 +26,8 @@ int print_h(void)
     return 0;
 }
 
-int main(int argc, char **argv)
+void start(screen *hub, sfRenderWindow *window)
 {
-    srand(time(NULL));
-    if (argc < 2)
-        return my_error(
-            "./my_runner: bad arguments: 0 given but 1 is required retry with -h");
-    if (argc < 2 || (argv[1][0] == '-' && argv[1][1] == 'h'))
-        return print_h();
-    screen *hub = malloc(sizeof(screen));
-    hub->state = START;
-    sfVideoMode mode = {1080 * 1.3, 720 * 1.3, 32};
-    sfRenderWindow
-        *window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle,
-        NULL);
-    screen_manager(hub, argv[1], window, mode);
     data *t = (data *) hub->datas->data;
     node *tmp = NULL;
     sfEvent event;
@@ -55,6 +42,26 @@ int main(int argc, char **argv)
         tmp = hub->datas;
     }
     sfRenderWindow_destroy(window);
-    destroy_music(t);
+    destroy_music(hub);
+}
+
+int main(int argc, char **argv)
+{
+    srand(time(NULL));
+    if (argc < 2) {
+        char *error = "./my_runner: bad arguments: 0 given";
+        my_strcat(error, my_strdup(" but 1 is required retry with -h"));
+        return my_error(error);
+    }
+    if (argv[1][0] == '-' && argv[1][1] == 'h')
+        return print_h();
+    screen *hub = malloc(sizeof(screen));
+    hub->state = START;
+    sfVideoMode mode = {1080 * 1.3, 720 * 1.3, 32};
+    sfRenderWindow
+        *window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle,
+        NULL);
+    screen_manager(hub, argv[1], window, mode);
+    start(hub, window);
     return 0;
 }

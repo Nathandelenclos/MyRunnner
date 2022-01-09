@@ -31,13 +31,21 @@ void sound_manager(data *d)
     sfMusic_play(music->music);
 }
 
-void destroy_music(data *d)
+void destroy_music(screen *hub)
 {
+    data *d;
+    node *tmp = hub->datas;
+    node *tmp_d;
     sound *t;
-    node *tmp = d->sounds;
     while (tmp != NULL) {
-        t = (sound *)tmp->data;
-        sfMusic_destroy(t->music);
+        d = (data *)tmp->data;
+        if (d != NULL)
+            tmp_d = d->sounds;
+        while (tmp_d != NULL) {
+            t = (sound *)tmp_d->data;
+            sfMusic_destroy(t->music);
+            tmp_d = tmp_d->next;
+        }
         tmp = tmp->next;
     }
 }

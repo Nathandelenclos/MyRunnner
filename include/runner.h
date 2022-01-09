@@ -132,7 +132,7 @@ void create_end(data *d, int width, int height);
 node *hero_is_on(data *d, enum group grp);
 game_obj *get_hero(data *d);
 void sound_manager(data *d);
-void destroy_music(data *d);
+void destroy_music(screen *hub);
 sound *create_sound(char *filename, enum sound_grp grp, float volume);
 void screen_manager(
     screen *s, char *filename, sfRenderWindow *window, sfVideoMode mode

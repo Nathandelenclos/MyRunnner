@@ -14,7 +14,8 @@
 #include <stdlib.h>
 
 game_obj *create_obj(
-    data *d, char *texture_name, sfIntRect rect, sfVector2f *vector)
+    data *d, char *texture_name, sfIntRect rect, sfVector2f *vector
+)
 {
     game_obj *obj = malloc(sizeof(game_obj));
     obj->texture = get_texture(d, texture_name);
@@ -58,7 +59,8 @@ void sprites_manager(data *d)
         obj = (game_obj *) tmp->data;
         position = sfSprite_getPosition(obj->sprite);
         scale = sfSprite_getScale(obj->sprite);
-        if (position.x + ((obj->rect.width * scale.x)) > 0 && position.x < d->mode.width)
+        if (position.x + ((obj->rect.width * scale.x)) > 0 &&
+            position.x < d->mode.width)
             sfRenderWindow_drawSprite(d->window, obj->sprite, NULL);
         tmp = tmp->next;
     }

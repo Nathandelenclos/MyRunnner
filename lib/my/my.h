@@ -6,14 +6,16 @@
 */
 
 #ifndef MY_H
-    #define MY_H
+#define MY_H
 
 int my_printf(char *str, ...);
 char *my_strdup(char *str);
 int my_str_to_int(char *string);
 int my_char_is_in_string(char const c, char const *string);
 int my_chars_is_in_string(char const *chars, char const *string);
-char *my_str_replace(char const *strA, char *strB, char *final_buffer, int *index);
+char *my_str_replace(
+    char const *strA, char *strB, char *final_buffer, int *index
+);
 char *my_insert(char *strA, char *strB, char *buffer, int position);
 char *my_int_to_str(int, char *, int);
 int my_nbr_of_digit(int);
