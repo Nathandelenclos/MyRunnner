@@ -117,7 +117,9 @@ void move_manager(data *d);
 void create_green_slime(data *d, int width, int height);
 void create_safe_platform_right(data *d, int width, int height);
 void create_safe_platform_left(data *d, int width, int height);
-text *create_text(char *string, sfColor color, sfVector2f po, sfVector2f scale);
+text *create_text(
+    char *string, sfColor color, sfVector2f po, sfVector2f scale
+    );
 void modify_string(data *d, char *before, char *after);
 void text_manager(data *d);
 void display_score(data *d);
