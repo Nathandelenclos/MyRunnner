@@ -5,7 +5,6 @@
 ** Sprite
 */
 
-
 #include "../include/list.h"
 #include "../include/runner.h"
 #include <SFML/System.h>

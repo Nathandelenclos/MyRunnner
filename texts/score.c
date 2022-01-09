@@ -32,7 +32,8 @@ void display_score(data *d)
     my_strcat(points_s, "Distance: ");
     my_strcat(points_s, points);
     sfVector2f pos = {0, 0};
-    text *t = create_text(my_strdup(points_s), sfBlack, pos);
+    sfVector2f scale = {1, 1};
+    text *t = create_text(my_strdup(points_s), sfBlack, pos, scale);
     t->animate = animate_score;
     put_in_list(&d->texts, t);
 }

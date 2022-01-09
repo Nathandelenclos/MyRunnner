@@ -23,13 +23,16 @@ SRC	=		events.c	\
 			sprites/safe_platform_border_right.c	\
 			sprites/safe_platform_border_left.c	\
 			sprites/green_slime.c	\
+			sprites/btn.c	\
 			sprites/hero.c	\
 			texts/score.c	\
 			textures/hero.c	\
+			textures/widget.c	\
 			textures/background.c	\
 			textures/green_slime.c	\
 			textures/platform.c	\
 			screens/play.c	\
+			screens/main_menu.c	\
 
 OBJ	=	$(MAIN:.c=.o) $(SRC:.c=.o)
 

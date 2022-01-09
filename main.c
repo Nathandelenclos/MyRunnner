@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     if (argc < 2 || (argv[1][0] == '-' && argv[1][1] == 'h'))
         return print_h();
     screen *hub = malloc(sizeof(screen));
-    hub->state = PLAY;
+    hub->state = START;
     sfVideoMode mode = {1080 * 1.3, 720 * 1.3, 32};
     sfRenderWindow
         *window = sfRenderWindow_create(mode, "MyRunner", sfDefaultStyle,
@@ -52,6 +52,7 @@ int main(int argc, char **argv)
             tmp = tmp->next;
         }
         t->screen(t, event);
+        tmp = hub->datas;
     }
     sfRenderWindow_destroy(window);
     destroy_music(t);

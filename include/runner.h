@@ -19,7 +19,8 @@ enum group {
     BACKGROUND,
     MAP,
     ENEMY,
-    VICTORY
+    VICTORY,
+    WIDGET
 };
 
 enum state {
@@ -71,6 +72,7 @@ typedef struct game_obj_s {
     texture *texture;
     sfIntRect rect;
     sfVector2f position;
+    char *name;
     void (*action)(struct game_obj_s *, data *);
     void (*animate)(struct game_obj_s *);
     int up;
@@ -112,7 +114,7 @@ void move_manager(data *d);
 void create_green_slime(data *d, int width, int height);
 void create_safe_platform_right(data *d, int width, int height);
 void create_safe_platform_left(data *d, int width, int height);
-text *create_text(char *string, sfColor color, sfVector2f po);
+text *create_text(char *string, sfColor color, sfVector2f po, sfVector2f scale);
 void modify_string(data *d, char *before, char *after);
 void text_manager(data *d);
 void display_score(data *d);
@@ -129,7 +131,15 @@ game_obj *get_hero(data *d);
 void sound_manager(data *d);
 void destroy_music(data *d);
 sound *create_sound(char *filename, enum sound_grp grp, float volume);
-void screen_manager(screen *s, char *filename, sfRenderWindow *window, sfVideoMode mode);
-void *data_play(screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode);
-
+void screen_manager(
+    screen *s, char *filename, sfRenderWindow *window, sfVideoMode mode
+);
+void *data_play(
+    screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
+);
+void create_widget_texture(data *d);
+void create_btn(data *d, float x, float y, char *name);
+void *data_start(
+    screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
+);
 #endif

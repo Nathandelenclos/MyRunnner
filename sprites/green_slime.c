@@ -5,13 +5,6 @@
 ** sprite
 */
 
-/*
-** EPITECH PROJECT, 2021
-** MyRunner
-** File description:
-** Sprite
-*/
-
 #include "../include/list.h"
 #include "../include/runner.h"
 #include "../include/my.h"

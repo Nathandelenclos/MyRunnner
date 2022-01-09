@@ -13,7 +13,7 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 
-text *create_text(char *string, sfColor color, sfVector2f po)
+text *create_text(char *string, sfColor color, sfVector2f po, sfVector2f scale)
 {
     text *t = malloc(sizeof(text));
     t->text = sfText_create();
@@ -25,6 +25,7 @@ text *create_text(char *string, sfColor color, sfVector2f po)
     sfText_setFillColor(t->text, t->color);
     t->position = po;
     sfText_setPosition(t->text, t->position);
+    sfText_setScale(t->text, scale);
     return t;
 }
 

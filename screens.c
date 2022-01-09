@@ -11,15 +11,3 @@
 #include <SFML/Audio.h>
 #include <SFML/Graphics.h>
 #include <stdlib.h>
-
-void start_screen(struct data_s *data, sfEvent event)
-{
-    sfRenderWindow_clear(data->window, sfBlack);
-    while (sfRenderWindow_pollEvent(data->window, &event))
-        event_manager(data, event);
-    move_manager(data);
-    time_manager(data);
-    sprites_manager(data);
-    text_manager(data);
-    sfRenderWindow_display(data->window);
-}
