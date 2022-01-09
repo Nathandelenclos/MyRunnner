@@ -41,13 +41,11 @@ void pause_screen(struct data_s *data, sfEvent event)
 void create_data_pause(data *d)
 {
     create_widget_texture(d);
-    create_btn(d, d->mode.width / 3, (d->mode.height / 2) + 70, "exit");
     create_btn(d, d->mode.width / 3, (d->mode.height / 2), "resume");
     sfVector2f scale = {1, 1};
     sfVector2f position = {d->mode.width / 3 + 20, d->mode.height / 2};
     put_in_list(&d->texts, create_text("RESUME", sfWhite, position, scale));
     position.y += 70;
-    put_in_list(&d->texts, create_text("EXIT", sfWhite, position, scale));
     position.y = (d->mode.height / 4) + 50;
     position.x = (d->mode.width / 3.5) + 125;
     scale.y = 3;
