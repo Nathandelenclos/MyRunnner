@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2021                                                        
-** LINKED LIST                                                                      
-** File description:                                                            
-** reverse linked list                              
+** EPITECH PROJECT, 2021
+** LINKED LIST
+** File description:
+** reverse linked list
 */
 
 #include <stddef.h>

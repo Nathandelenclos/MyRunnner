@@ -6,7 +6,6 @@
 */
 
 #include "my.h"
-#include <stdlib.h>
 
 char *my_int_to_str(int value, char *buffer, int base)
 {

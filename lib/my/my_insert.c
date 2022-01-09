@@ -1,8 +1,8 @@
-/*                                                                              
-** EPITECH PROJECT, 2021                                                        
-** LIB                                                                      
-** File description:                                                            
-** inssert str into str                              
+/*
+** EPITECH PROJECT, 2021
+** LIB
+** File description:
+** inssert str into str
 */
 
 #include "./my.h"

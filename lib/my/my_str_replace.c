@@ -1,13 +1,15 @@
-/*                                                                              
-** EPITECH PROJECT, 2021                                                        
-** LIB                                                                      
-** File description:                                                            
-** replace                               
+/*
+** EPITECH PROJECT, 2021
+** LIB
+** File description:
+** replace
 */
 
 #include "./my.h"
 
-char *my_str_replace(char const *strA, char *strB, char *final_buffer, int *index)
+char *my_str_replace(
+    char const *strA, char *strB, char *final_buffer, int *index
+)
 {
     char buffer[my_strlen(strA) + my_strlen(strB)];
     int i = 0;

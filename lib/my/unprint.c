@@ -1,8 +1,8 @@
-/*                                                                              
-** EPITECH PROJECT, 2021                                                        
-** LIB                                                                      
-** File description:                                                            
-** print unprint                               
+/*
+** EPITECH PROJECT, 2021
+** LIB
+** File description:
+** print unprint
 */
 
 #include "my.h"
