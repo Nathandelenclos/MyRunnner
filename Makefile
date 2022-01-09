@@ -33,6 +33,8 @@ SRC	=		events.c	\
 			textures/platform.c	\
 			screens/play.c	\
 			screens/main_menu.c	\
+			screens/win.c	\
+			screens/death_end.c	\
 
 OBJ	=	$(MAIN:.c=.o) $(SRC:.c=.o)
 

@@ -27,7 +27,9 @@ enum state {
     START = 0,
     END = 1,
     PLAY = 2,
-    RESUME = 3
+    RESUME = 3,
+    DEATH = 4,
+    WIN = 5,
 };
 
 enum sound_grp {
@@ -54,6 +56,7 @@ typedef struct data_s {
     sfVideoMode mode;
     sfFont *font;
     int scrolling;
+    char *filemap;
     void (*screen)(struct data_s *data, sfEvent event);
 } data;
 
@@ -140,6 +143,13 @@ void *data_play(
 void create_widget_texture(data *d);
 void create_btn(data *d, float x, float y, char *name);
 void *data_start(
+    screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
+);
+void *data_death(
+    screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
+);
+game_obj *is_on_btn(data *d, sfMouseButtonEvent event);
+void *data_win(
     screen *screen1, char *filename, sfRenderWindow *window, sfVideoMode mode
 );
 #endif

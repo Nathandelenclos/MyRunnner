@@ -66,10 +66,7 @@ void action(game_obj *obj, data *d)
     sfVector2f position = sfSprite_getPosition(obj->sprite);
     sfSprite_move(obj->sprite, hero_fall(obj, d, position));
     if (position.y > d->mode.height) {
-        sfRenderWindow_close(d->window);
-        my_printf(
-            "Vous êtes mort (vous êtes tombés dans le vide)! avec un score de %i",
-            (int) (d->scrolling / 128));
+        d->hub->state = DEATH;
     }
 }
 

@@ -33,8 +33,7 @@ void end_action(game_obj *obj, data *d)
         return;
     node *victory = hero_is_on(d, VICTORY);
     if (victory) {
-        sfRenderWindow_close(d->window);
-        my_printf("Vous avez Gagner ! avec un score de %i", (int) (d->scrolling / 128));
+        d->hub->state = WIN;
     }
 }
 

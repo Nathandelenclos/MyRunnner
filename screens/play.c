@@ -38,6 +38,7 @@ void *data_play(screen *screen1, char *filename, sfRenderWindow *window, sfVideo
     d->font = sfFont_createFromFile("resources/font.ttf");
     d->scrolling = 250;
     d->screen = play_screen;
+    d->filemap = filename;
     create_textures(d);
     create_hero(d);
     create_texts(d);

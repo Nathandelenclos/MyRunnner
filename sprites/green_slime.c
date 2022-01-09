@@ -33,8 +33,7 @@ void green_slime_action(game_obj *obj, data *d)
 {
     sfSprite_move(obj->sprite, obj->vector);
     if (hero_collide(d, get_hero(d), hero_is_on(d, ENEMY))) {
-        my_printf("bonsoir oui");
-        sfRenderWindow_close(d->window);
+        d->hub->state = DEATH;
     }
 }
 
