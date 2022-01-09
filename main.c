@@ -49,9 +49,7 @@ int main(int argc, char **argv)
 {
     srand(time(NULL));
     if (argc < 2) {
-        char *error = "./my_runner: bad arguments: 0 given";
-        my_strcat(error, my_strdup(" but 1 is required retry with -h"));
-        return my_error(error);
+        return my_error("./my_runner: bad arguments: 0 given but 1 is required retry with -h");
     }
     if (argv[1][0] == '-' && argv[1][1] == 'h')
         return print_h();
