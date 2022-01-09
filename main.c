@@ -48,8 +48,10 @@ void start(screen *hub, sfRenderWindow *window)
 int main(int argc, char **argv)
 {
     srand(time(NULL));
+    char *t = "./my_runner: bad arguments: 0 given but 1 is required retry with -h";
     if (argc < 2) {
-        return my_error("./my_runner: bad arguments: 0 given but 1 is required retry with -h");
+        my_printf(t);
+        return 84;
     }
     if (argv[1][0] == '-' && argv[1][1] == 'h')
         return print_h();
