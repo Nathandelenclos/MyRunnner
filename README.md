@@ -15,3 +15,7 @@ make
 ```bash
 ./my_runner map2
 ```
+
+## Demo
+
+![](demo.gif)
